@@ -8,6 +8,7 @@ import com.liweqnaun.latte.net.callback.IRequest;
 import com.liweqnaun.latte.net.callback.ISuccess;
 import com.liweqnaun.latte.ui.LoaderStyle;
 
+import java.io.File;
 import java.util.Map;
 import java.util.WeakHashMap;
 
@@ -28,6 +29,10 @@ public class RestClientBuilder {
     private RequestBody mBody = null;
     private Context mContext = null;
     private LoaderStyle mloaderStyle = null;
+    private File mFile = null;
+    private String mDownloadDir = null;
+    private String mExtension  = null;
+    private String mName = null;
 
     RestClientBuilder() {
 
@@ -44,6 +49,27 @@ public class RestClientBuilder {
         PARAMS.put(key,value);
         return this;
     }
+    public final RestClientBuilder file(File file) {
+        this.mFile = file;
+        return this;
+    }
+    public final RestClientBuilder file(String file) {
+        this.mFile = new File(file);
+        return this;
+    }
+    public final RestClientBuilder name(String name) {
+        this.mName = name;
+        return this;
+    }
+    public final RestClientBuilder extension(String extension) {
+        this.mExtension = extension;
+        return this;
+    }
+    public final RestClientBuilder dir(String dir) {
+        this.mDownloadDir = dir;
+        return this;
+    }
+
     public final RestClientBuilder raw(String raw) {
         this.mBody = RequestBody.create(MediaType.parse("application/json;charset=UTF-8"),raw);
         return this;
@@ -76,7 +102,7 @@ public class RestClientBuilder {
     }
 
     public final RestClient build() {
-        return new RestClient(mUrl,PARAMS,mIRequest,mISuccess,mIFailure,mIError,
-                mBody,mContext,mloaderStyle);
+        return new RestClient(mUrl,PARAMS,mDownloadDir,mExtension,mName,mIRequest,mISuccess,mIFailure,mIError,
+                mBody,mFile,mContext,mloaderStyle);
     }
 }
