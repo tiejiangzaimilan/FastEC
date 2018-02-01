@@ -6,8 +6,10 @@ import android.support.v7.app.ActionBar;
 import android.widget.Toast;
 
 import com.liweqnaun.latte.activities.ProxyActivity;
+import com.liweqnaun.latte.app.Latte;
 import com.liweqnaun.latte.delegates.LatteDelegate;
 import com.liweqnaun.latte.ec.icon.launcher.LauncherDelegate;
+import com.liweqnaun.latte.ec.icon.main.ECBottomDelegate;
 import com.liweqnaun.latte.ec.icon.sign.ISignListener;
 import com.liweqnaun.latte.ec.icon.sign.SignInDelegate;
 import com.liweqnaun.latte.ec.icon.sign.SignUpDelegate;
@@ -23,6 +25,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener,ILau
         if (actionBar != null) {
             actionBar.hide();
         }
+        Latte.getConfigurator().withActivity(this);
 
     }
 
@@ -46,7 +49,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener,ILau
         switch (tag) {
             case SIGNED:
                 Toast.makeText(this,"启动结束，用户登录",Toast.LENGTH_LONG).show();
-                startWithPop(new ExampleDelegate());
+                startWithPop(new ECBottomDelegate());
                 break;
             case NOT_SIGNED:
                 Toast.makeText(this,"启动结束，用户没登陆",Toast.LENGTH_LONG).show();

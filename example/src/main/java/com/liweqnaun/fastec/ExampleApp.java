@@ -21,6 +21,7 @@ public class ExampleApp extends Application {
         Latte.init(this)
                 .withIcon(new FontEcModule())
                 .withInterceptor(new DebugInterceptor("index",R.raw.test))
+                .withWeChatAppId("").withWeChatAppSecret("")
                 .withIcon(new FontAwesomeModule()).withApiHost("http://127.0.0.1")
                 .configure();
         initStetho();
