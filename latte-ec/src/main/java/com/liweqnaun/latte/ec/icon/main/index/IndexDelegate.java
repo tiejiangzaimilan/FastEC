@@ -3,6 +3,7 @@ package com.liweqnaun.latte.ec.icon.main.index;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.GridLayoutManager;
@@ -16,8 +17,10 @@ import com.liweqnaun.latte.app.Latte;
 import com.liweqnaun.latte.delegates.bottom.BottomItemDelegate;
 import com.liweqnaun.latte.ec.R;
 import com.liweqnaun.latte.ec.R2;
+import com.liweqnaun.latte.ec.icon.main.ECBottomDelegate;
 import com.liweqnaun.latte.net.RestClient;
 import com.liweqnaun.latte.net.callback.ISuccess;
+import com.liweqnaun.latte.ui.recycler.BaseDecoration;
 import com.liweqnaun.latte.ui.recycler.MultipleFields;
 import com.liweqnaun.latte.ui.recycler.MultipleItemEntity;
 import com.liweqnaun.latte.ui.refresh.RefreshHandler;
@@ -62,6 +65,12 @@ public class IndexDelegate extends BottomItemDelegate {
     private void initRecyclerView() {
         final GridLayoutManager manager = new GridLayoutManager(getContext(), 4);
         mRecyclerView.setLayoutManager(manager);
+        //各个Item之间加虚线
+        mRecyclerView.addItemDecoration(BaseDecoration.create(ContextCompat.getColor(getContext(),
+                R.color.app_background),5));
+        //得到父级元素
+        final ECBottomDelegate ecBottomDelegate = getParentDelegate();
+        mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(ecBottomDelegate));
     }
 
     @Override

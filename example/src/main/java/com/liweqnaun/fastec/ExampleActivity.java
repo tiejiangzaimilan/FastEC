@@ -16,6 +16,8 @@ import com.liweqnaun.latte.ec.icon.sign.SignUpDelegate;
 import com.liweqnaun.latte.ui.launcher.ILauncherListener;
 import com.liweqnaun.latte.ui.launcher.OnLauncherFinishTag;
 
+import qiu.niorgai.StatusBarCompat;
+
 public class ExampleActivity extends ProxyActivity implements ISignListener,ILauncherListener{
 
     @Override
@@ -26,6 +28,8 @@ public class ExampleActivity extends ProxyActivity implements ISignListener,ILau
             actionBar.hide();
         }
         Latte.getConfigurator().withActivity(this);
+        //设置沉浸式
+        StatusBarCompat.translucentStatusBar(this,true);
 
     }
 

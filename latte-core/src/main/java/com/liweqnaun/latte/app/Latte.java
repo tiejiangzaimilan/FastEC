@@ -1,6 +1,7 @@
 package com.liweqnaun.latte.app;
 
 import android.content.Context;
+import android.os.Handler;
 
 import java.util.HashMap;
 
@@ -27,6 +28,9 @@ public final class Latte {
     //加不加name取决于初始化的时候加不加name，本来是key是string，现在改为object了
     public static <T> T getConfiguration(Object key) {
         return getConfigurator().getConfiguration(key);
+    }
+    public static Handler getHandler() {
+        return getConfiguration(ConfigType.HANDLER);
     }
 
 }

@@ -42,7 +42,7 @@ public class SignInDelegate extends LatteDelegate {
     void onClickSignIn() {
         if (checkForm()) {
             RestClient.builder()
-                    .url("http://192.168.1.168/zerg/public/data/user_profile.json")
+                    .url("http://192.168.1.105/zerg/public/data/user_profile.json")
                     .params("email", mEmail.getText().toString())
                     .params("password", mPassword.getText().toString())
                     .success(new ISuccess() {

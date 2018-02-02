@@ -33,6 +33,7 @@ public class RestCreator {
         private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
                 .client(OKHttpHolder.OK_HTTP_CLIENT)
                 .baseUrl(BASE_URL).addConverterFactory(ScalarsConverterFactory.create()).build();
+        //应该在这个鬼地方进行的url的拼接
     }
     private static final class OKHttpHolder {
         private static final int TIME_OUT = 60;

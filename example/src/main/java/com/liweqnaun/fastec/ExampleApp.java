@@ -20,19 +20,22 @@ public class ExampleApp extends Application {
         super.onCreate();
         Latte.init(this)
                 .withIcon(new FontEcModule())
-                .withInterceptor(new DebugInterceptor("index",R.raw.test))
-                .withWeChatAppId("").withWeChatAppSecret("")
-                .withIcon(new FontAwesomeModule()).withApiHost("http://127.0.0.1")
+                .withInterceptor(new DebugInterceptor("haha", R.raw.test))
+//                .withWeChatAppId("wxb6152ed38d9f292e")
+//                .withWeChatAppSecret("f45d2af4c2c7e24e22d0afd519189c80")
+                .withIcon(new FontAwesomeModule())
+                .withApiHost("http://192.168.1.105/zerg/public/RestServer/api/")
                 .configure();
-        initStetho();
+//        initStetho();没有这一句是不是就没有拦截器了？
         DatabaseManager.getInstance().init(this);
 
     }
-    private void initStetho() {
-        Stetho.initialize(
-                Stetho.newInitializerBuilder(this)
-                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
-        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
-                        .build());
-    }
 }
+//    private void initStetho() {
+//        Stetho.initialize(
+//                Stetho.newInitializerBuilder(this)
+//                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+//        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+//                        .build());
+//    }
+//}

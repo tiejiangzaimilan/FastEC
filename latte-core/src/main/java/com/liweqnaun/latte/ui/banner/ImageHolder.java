@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import com.bigkoo.convenientbanner.holder.Holder;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.liweqnaun.latte.R;
 
 /**
@@ -16,6 +17,9 @@ import com.liweqnaun.latte.R;
 
 public class ImageHolder implements Holder<String>{
     private AppCompatImageView mImageView = null;
+    private static final RequestOptions RECYCLER_OPTIONS = new RequestOptions().centerCrop()
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .dontAnimate();
 
     @Override
     public View createView(Context context) {
@@ -25,7 +29,7 @@ public class ImageHolder implements Holder<String>{
 
     @Override
     public void UpdateUI(Context context, int position, String data) {
-        Glide.with(context).load(data).diskCacheStrategy(DiskCacheStrategy.ALL)
-                .dontAnimate().centerCrop().into(mImageView);
+        Glide.with(context).load(data).apply(RECYCLER_OPTIONS).into(mImageView);
+
     }
 }
