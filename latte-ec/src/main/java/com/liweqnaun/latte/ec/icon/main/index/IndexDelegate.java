@@ -5,14 +5,24 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import com.joanzapata.iconify.widget.IconTextView;
+import com.liweqnaun.latte.app.Latte;
 import com.liweqnaun.latte.delegates.bottom.BottomItemDelegate;
 import com.liweqnaun.latte.ec.R;
 import com.liweqnaun.latte.ec.R2;
+import com.liweqnaun.latte.net.RestClient;
+import com.liweqnaun.latte.net.callback.ISuccess;
+import com.liweqnaun.latte.ui.recycler.MultipleFields;
+import com.liweqnaun.latte.ui.recycler.MultipleItemEntity;
+import com.liweqnaun.latte.ui.refresh.RefreshHandler;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 
@@ -31,13 +41,41 @@ public class IndexDelegate extends BottomItemDelegate {
     IconTextView mIconTextView = null;
     @BindView(R2.id.et_search_view)
     AppCompatTextView mAppCompatTextView = null;
+
+    private RefreshHandler mRefreshHandler = null;
+
+    @Override
+    public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
+        mRefreshHandler = RefreshHandler.create(mRefreshLayout,mRecyclerView,new IndexDataConverter());
+
+    }
+
+    private void initRefreshLayout() {
+        //设置颜色
+        mRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+        //设置表现
+        mRefreshLayout.setProgressViewOffset(true,120,300);
+
+    }
+    private void initRecyclerView() {
+        final GridLayoutManager manager = new GridLayoutManager(getContext(), 4);
+        mRecyclerView.setLayoutManager(manager);
+    }
+
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
+        initRefreshLayout();
+        initRecyclerView();
+        mRefreshHandler.firstPage("index.php");
+    }
+
     @Override
     public Object setLayout() {
         return R.layout.delegate_index;
     }
 
-    @Override
-    public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
 
-    }
 }
