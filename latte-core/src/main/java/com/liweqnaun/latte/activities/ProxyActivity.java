@@ -1,4 +1,5 @@
 package com.liweqnaun.latte.activities;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.ContentFrameLayout;
@@ -6,7 +7,6 @@ import android.support.v7.widget.ContentFrameLayout;
 import com.liweqnaun.latte.R;
 import com.liweqnaun.latte.delegates.LatteDelegate;
 
-import me.yokeyword.fragmentation.ISupportFragment;
 import me.yokeyword.fragmentation.SupportActivity;
 /**
  * Created by liweqnaun on 2018/1/28.
