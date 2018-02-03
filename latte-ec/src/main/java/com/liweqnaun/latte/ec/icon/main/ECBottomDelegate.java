@@ -6,6 +6,7 @@ import com.liweqnaun.latte.delegates.bottom.BaseBottomDelegate;
 import com.liweqnaun.latte.delegates.bottom.BottomItemDelegate;
 import com.liweqnaun.latte.delegates.bottom.BottomTabBean;
 import com.liweqnaun.latte.delegates.bottom.ItemBuilder;
+import com.liweqnaun.latte.ec.icon.main.cart.ShopCartDelegate;
 import com.liweqnaun.latte.ec.icon.main.index.IndexDelegate;
 import com.liweqnaun.latte.ec.icon.main.sort.SortDelegate;
 
@@ -22,7 +23,7 @@ public class ECBottomDelegate extends BaseBottomDelegate {
         items.put(new BottomTabBean("{fa-home}", "主页"), new IndexDelegate());
         items.put(new BottomTabBean("{fa-sort}", "分类"), new SortDelegate());
         items.put(new BottomTabBean("{fa-compass}", "发现"), new IndexDelegate());
-        items.put(new BottomTabBean("{fa-shopping-cart}", "购物车"), new IndexDelegate());
+        items.put(new BottomTabBean("{fa-shopping-cart}", "购物车"), new ShopCartDelegate());
         items.put(new BottomTabBean("{fa-user}", "我的"), new IndexDelegate());
         return builder.addItems(items).build();
     }
